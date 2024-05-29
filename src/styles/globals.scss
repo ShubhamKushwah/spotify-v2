@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./_variables.scss";
+
+body {
+  background: $cream-light;
+}
+
+.bg-black {
+  background: $black;
+}
+
+.bg-cream {
+  background: $cream;
+}
+
+.bg-cream-dark {
+  background: $cream-dark;
+}
+
+.bg-cream-darker {
+  background: $cream-darker;
+}
+
+.bg-cream-light {
+  background: $cream-light;
+}
