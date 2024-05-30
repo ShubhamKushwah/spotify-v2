@@ -1,7 +1,91 @@
+@import "../../styles/variables";
+
 .feed {
-  width: 600px;
+  width: 640px;
+  padding: 0 2rem 0;
 }
 
 .send {
-  box-shadow: 0px 0px 10px 0px #b5b5b540;
+  box-shadow: 0px 0px 10px 0px $shadow;
+  margin: 0 -1rem;
+}
+
+.sendBtn {
+  &:hover {
+    background: $dark-grey;
+  }
+}
+
+.info {
+  margin-left: 18px;
+  border-color: $gray;
+  background-color: $cream-darker2;
+}
+
+.info_secondary {
+  margin-left: 6px;
+  border-color: $gray;
+  background-color: $cream-darker2;
+}
+
+.participate {
+  color: white;
+
+  &:hover {
+    background: $dark-grey;
+  }
+}
+
+.uploadBtn {
+  &:hover {
+    background: $dark-grey;
+  }
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.input {
+  padding: 19px 23px;
+
+  &::placeholder {
+    color: $text-dark-cream;
+  }
+}
+
+.compare {
+  position: fixed;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.sticky {
+  left: 0;
+  bottom: 0;
+  padding: 2rem 0 12px;
+  background: $cream-light;
+}
+
+.rightSection {
+  margin-top: 0.5rem;
+  min-width: 170px;
+}
+
+.roundedCard {
+  padding: 45px 76px 44px 48px;
+}
+
+.space {
+  padding-top: 4rem;
 }

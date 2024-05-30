@@ -1,7 +1,21 @@
+@import "../../styles/variables";
+
 .sidebar {
   min-width: 75px;
 
   .item {
     margin-bottom: 60px;
+
+    svg {
+      fill: $dark-grey-2;
+      transition: all 0.2s ease;
+    }
+
+    &:hover {
+      cursor: pointer;
+      svg {
+        fill: $gray;
+      }
+    }
   }
 }

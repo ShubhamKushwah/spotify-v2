@@ -1,6 +1,9 @@
 import classNames from "classnames";
-// import Image from "../../assets/images/listening_music.png";
 
+// Components
+import BentoCard from "./BentoCard";
+
+// Styles
 import styles from "./index.module.scss";
 
 export default function Bento() {
@@ -13,46 +16,24 @@ export default function Bento() {
     >
       <div className={styles.imageTile}>
         <p className={styles.title}>Introduction</p>
-        {/* <div className="rounded-2xl border border-white h-32 overflow-hidden">
-          <div
-            className="bg-cover h-full w-full"
-            style={{ backgroundImage: `url(${Image.src})` }}
-          />
-        </div> */}
         <div className={styles.fade} />
       </div>
-      <div className="mt-3 flex flex-col justify-between bg-cream-dark rounded-2xl p-4 h-52">
-        <p>💾</p>
-        <p>Challenge Dataset</p>
-      </div>
+      <BentoCard className="mt-3" icon="💾" title="Challenge Dataset" />
       <div className="flex mt-3">
-        <div className="flex-1 flex flex-col justify-between bg-cream-dark rounded-2xl p-4 h-32 mr-3">
-          <p>🎵</p>
-          <p>Background</p>
-        </div>
-        <div className="flex-1 flex flex-col justify-between bg-cream-dark rounded-2xl p-4 h-32">
-          <p>💾</p>
-          <p>Dataset</p>
-        </div>
+        <BentoCard className="mr-3" icon="🎵" title="Background" size="small" />
+        <BentoCard icon="💾" title="Dataset" size="small" />
       </div>
-      <div className="mt-3 flex flex-col justify-between bg-cream-dark rounded-2xl p-4 h-32">
-        <p>🚀</p>
-        <p>Submission Format</p>
-      </div>
+      <BentoCard
+        className="mt-3"
+        icon="🚀"
+        title="Submission Format"
+        size="small"
+      />
       <div className="flex mt-3">
-        <div className="flex-1 flex flex-col justify-between bg-cream-dark rounded-2xl p-4 h-32 mr-3">
-          <p>🎧</p>
-          <p>Task</p>
-        </div>
-        <div className="flex-1 flex flex-col justify-between bg-cream-dark rounded-2xl p-4 h-32">
-          <p>🖊</p>
-          <p>Evaluation</p>
-        </div>
+        <BentoCard className="mr-3" icon="🎧" title="Task" size="small" />
+        <BentoCard icon="🖊" title="Evaluation" size="small" />
       </div>
-      <div className="mt-3 flex flex-col justify-between bg-cream-dark rounded-2xl p-4 h-52">
-        <p>📜</p>
-        <p>Challenge Dataset</p>
-      </div>
+      <BentoCard className="mt-3" icon="📜" title="Rules" />
     </div>
   );
 }

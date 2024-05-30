@@ -1,10 +1,13 @@
-import Logo from "../../assets/icons/logo.svg";
-import Trophy from "../../assets/icons/trophy.svg";
-import Chat from "../../assets/icons/chat.svg";
-import Graph from "../../assets/icons/graph.svg";
-import Person from "../../assets/icons/person.svg";
 import classNames from "classnames";
 
+// Assets
+import Logo from "../../assets/icons/logo.svg";
+import TrophyIcon from "../../assets/icons/trophy.svg";
+import ChatIcon from "../../assets/icons/chat.svg";
+import GraphIcon from "../../assets/icons/graph.svg";
+import PersonIcon from "../../assets/icons/person.svg";
+
+// Styles
 import styles from "./index.module.scss";
 
 export default function Sidebar() {
@@ -20,17 +23,17 @@ export default function Sidebar() {
           <Logo />
         </div>
         <div className={styles.item}>
-          <Trophy />
+          <TrophyIcon />
         </div>
         <div className={styles.item}>
-          <Chat />
+          <ChatIcon />
         </div>
         <div className={styles.item}>
-          <Graph />
+          <GraphIcon />
         </div>
       </div>
       <div>
-        <Person />
+        <PersonIcon />
       </div>
     </div>
   );

@@ -2,10 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./_variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+@import "./mixins";
+@import "./variables";
 
 body {
   background: $cream-light;
+}
+
+* {
+  font-family: Inter, sans-serif;
 }
 
 .bg-black {
@@ -24,6 +31,42 @@ body {
   background: $cream-darker;
 }
 
+.bg-cream-darker2 {
+  background: $cream-darker2;
+}
+
 .bg-cream-light {
   background: $cream-light;
+}
+
+.text-body {
+  @include text-body;
+}
+
+.text-body-2 {
+  @include text-body-2;
+}
+
+.text-body-2-medium {
+  @include text-body-2-medium;
+}
+
+.text-title {
+  @include text-title;
+}
+
+.text-heading {
+  @include text-heading;
+}
+
+.text-subtitle {
+  @include text-subtitle;
+}
+
+.text-body-light {
+  @include text-body-light;
+}
+
+.text-big {
+  @include text-big;
 }
