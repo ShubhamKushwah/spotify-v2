@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useRef, useState } from "react";
 import classnames from "classnames";
 import Image from "next/image";
 
@@ -16,15 +17,42 @@ import EyeIcon from "@/assets/icons/eye.svg";
 // Styles
 import styles from "./index.module.scss";
 
-export default function Container() {
+// function debounce(method: any, delay: any) {
+//   clearTimeout(method._tId);
+//   method._tId = setTimeout(function () {
+//     method();
+//   }, delay);
+// }
+
+const TopSection = ({ collapse }: any) => {
   return (
-    <div className="flex-1 flex flex-col p-5 h-screen overflow-hidden">
-      <div
-        className={classnames(
-          "rounded-2xl bg-cream-darker pb-10",
-          styles.roundedCard
-        )}
-      >
+    <div
+      className={classnames(
+        "rounded-2xl bg-cream-darker pb-10",
+        styles.roundedCard,
+        { [styles.collapse]: collapse }
+      )}
+    >
+      {collapse ? (
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <SpotifyIcon style={{ transform: "scale(1.9)" }} />
+            <p className="ml-7 text-heading-bold">
+              Spotify Million Playlist
+              <br />
+              Dataset Challenge
+            </p>
+          </div>
+          <button
+            className={classnames(
+              "rounded-full w-72 bg-black text-body-2-medium p-3",
+              styles.participate
+            )}
+          >
+            🔒 Participate
+          </button>
+        </div>
+      ) : (
         <div className="flex justify-between">
           <div>
             <div className="flex items-center">
@@ -124,26 +152,79 @@ export default function Container() {
             </div>
           </div>
         </div>
-      </div>
+      )}
+    </div>
+  );
+};
+
+export default function Container({ selected }: any) {
+  const [collapse, setCollapse] = useState(false);
+  const feedRef = useRef(null);
+  const introRef = useRef(null);
+  const challengeRef = useRef(null);
+  const citationRef = useRef(null);
+  const contactRef = useRef(null);
+  const rulesRef = useRef(null);
+  const evaluationRef = useRef(null);
+  const taskRef = useRef(null);
+  const backgroundRef = useRef(null);
+  const datasetRef = useRef(null);
+  const submissionRef = useRef(null);
+
+  const REF_MAP = useMemo(
+    () => [
+      introRef,
+      challengeRef,
+      backgroundRef,
+      datasetRef,
+      submissionRef,
+      taskRef,
+      evaluationRef,
+      rulesRef,
+      citationRef,
+      contactRef,
+    ],
+    []
+  );
+
+  const handleScroll = (value: any) => {
+    console.log("HERE", value);
+    if (value > 100) {
+      setCollapse(true);
+    } else {
+      setCollapse(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!feedRef.current) {
+      return;
+    }
+    // @ts-ignore
+    feedRef.current.addEventListener("scroll", (e) => {
+      handleScroll(e.target.scrollTop);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!REF_MAP[selected]) return;
+    if (!REF_MAP[selected].current) return;
+    // @ts-ignore
+    REF_MAP[selected].current.scrollIntoView({ behavior: "smooth" });
+  }, [selected, REF_MAP]);
+
+  return (
+    <div className="flex-1 flex flex-col p-5 h-screen overflow-hidden">
+      <TopSection collapse={collapse} />
       <div
+        ref={feedRef}
         className={classnames(
           "overflow-auto relative flex-1 mt-9 mx-auto",
           styles.feed
         )}
       >
-        <p className="text-heading">Introduction</p>
-        <p className="mt-3 mb-8 text-body-2-loose">
-          The Spotify Million Playlist Dataset Challenge consists of a dataset
-          and evaluation to enable research in music recommendations. It is a
-          continuation of the RecSys Challenge 2018, which ran from January to
-          July 2018. The dataset contains 1,000,000 playlists, including
-          playlist titles and track titles, created by users on the Spotify
-          platform between January 2010 and October 2017. The evaluation task is
-          automatic playlist continuation: given a seed playlist title and/or
-          initial set of tracks in a playlist, to predict the subsequent tracks
-          in that playlist. This is an open-ended challenge intended to
-          encourage research in music recommendations, and no prizes will be
-          awarded (other than bragging rights).
+        <p className="text-heading" ref={introRef}>
+          Introduction
         </p>
         <p className="mt-3 mb-8 text-body-2-loose">
           The Spotify Million Playlist Dataset Challenge consists of a dataset
@@ -159,6 +240,150 @@ export default function Container() {
           awarded (other than bragging rights).
         </p>
         <Image src={BannerImage.src} width={452} height={198} alt="banner" />
+        <p ref={challengeRef} className="mt-10 text-heading">
+          Challenge Dataset
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={backgroundRef} className="mt-10 text-heading">
+          Background
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={datasetRef} className="mt-10 text-heading">
+          Dataset
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={submissionRef} className="mt-10 text-heading">
+          Submission Format
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={taskRef} className="mt-10 text-heading">
+          Task
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={evaluationRef} className="mt-10 text-heading">
+          Evaluation
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={rulesRef} className="mt-10 text-heading">
+          Rules
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={citationRef} className="mt-10 text-heading">
+          Citation
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
+        <p ref={contactRef} className="mt-10 text-heading">
+          Contact
+        </p>
+        <p className="mt-3 mb-8 text-body-2-loose">
+          The Spotify Million Playlist Dataset Challenge consists of a dataset
+          and evaluation to enable research in music recommendations. It is a
+          continuation of the RecSys Challenge 2018, which ran from January to
+          July 2018. The dataset contains 1,000,000 playlists, including
+          playlist titles and track titles, created by users on the Spotify
+          platform between January 2010 and October 2017. The evaluation task is
+          automatic playlist continuation: given a seed playlist title and/or
+          initial set of tracks in a playlist, to predict the subsequent tracks
+          in that playlist. This is an open-ended challenge intended to
+          encourage research in music recommendations, and no prizes will be
+          awarded (other than bragging rights).
+        </p>
         <div className={styles.space} />
         <div className={classnames("sticky", styles.sticky)}>
           <div

@@ -59,6 +59,14 @@ body {
   @include text-heading;
 }
 
+.text-heading-bold {
+  @include text-heading-bold;
+}
+
+.text-subheading {
+  @include text-subheading;
+}
+
 .text-subtitle {
   @include text-subtitle;
 }

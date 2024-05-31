@@ -16,9 +16,7 @@ import TaskImage from "@/assets/images/task.png";
 // Styles
 import styles from "./index.module.scss";
 
-export default function Bento() {
-  const [selected, setSelected] = useState(0);
-
+export default function Bento({ selected, setSelected }: any) {
   return (
     <div
       className={classNames(
@@ -98,6 +96,25 @@ export default function Bento() {
         icon="📜"
         title="Rules"
       />
+      <div className="flex mt-3">
+        <BentoCard
+          image={ChallengeImage.src}
+          onClick={() => setSelected(8)}
+          highlight={selected === 8}
+          className="mr-3"
+          icon="📄"
+          title="Citation"
+          size="small"
+        />
+        <BentoCard
+          image={IntroductionImage.src}
+          onClick={() => setSelected(9)}
+          highlight={selected === 9}
+          icon="🤙"
+          title="Contact"
+          size="small"
+        />
+      </div>
     </div>
   );
 }
